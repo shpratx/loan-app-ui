@@ -1,0 +1,13 @@
+{
+  "name": "tasheel-finance-ui-tests",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/.bin/jest --forceExit"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "@jest/globals": "^29.7.0",
+    "jsdom": "^24.0.0"
+  }
+}
