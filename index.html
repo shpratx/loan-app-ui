@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tasheel Finance</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--surface:#fff;--surface-elevated:#f8f9fc;--bg:#f4f5f9;--neutral-100:#ededf3;--neutral-200:#d5d7e2;--neutral-400:#858aad;--neutral-600:#5a5f7d;--neutral-900:#292c3d;--neutral-1050:#14161f;--primary-action:#4f6ef7;--primary-hover:#3b5ae0;--primary-active:#2d4acc;--primary-subtle:#eef1fe;--success:#2ecc71;--success-bg:#e8faf0;--warning:#f39c12;--warning-bg:#fef9e7;--danger:#e74c3c;--danger-bg:#fdedec;--border:#d5d7e2;--border-input:#858aad;--text-primary:#292c3d;--text-secondary:#5a5f7d;--text-muted:#858aad;--text-white:#fff;--radius-sm:4px;--radius-md:6px;--radius-lg:8px;--radius-xl:12px;--radius-round:9999px;--shadow-sm:0 2px 4px rgba(0,0,0,.08);--shadow-md:0 4px 12px rgba(0,0,0,.12);--font:'Inter',system-ui,sans-serif;--fs-xs:11px;--fs-sm:13px;--fs-md:14px;--fs-lg:16px;--fs-xl:20px;--fs-2xl:24px;--fs-3xl:32px;--fs-hero:40px;--sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;--sp-8:32px;--spacing-4x:16px;--font-size-md:14px}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--font);background:var(--bg);color:var(--text-primary);font-size:var(--fs-md)}
+.header{height:56px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 var(--sp-6);gap:var(--sp-3);position:sticky;top:0;z-index:100;box-shadow:var(--shadow-sm)}
+.header h1{font-size:var(--fs-lg);font-weight:600}.header .badge-tag{margin-left:auto;font-size:var(--fs-xs);color:var(--text-muted);background:var(--surface-elevated);padding:3px 10px;border-radius:var(--radius-round);border:1px solid var(--border)}
+.container{max-width:420px;margin:0 auto;padding:0;min-height:calc(100vh - 56px);display:flex;flex-direction:column;background:var(--surface);box-shadow:var(--shadow-md);position:relative}
+.content{flex:1;padding:var(--sp-5);overflow-y:auto}
+.card{background:var(--surface);border-radius:var(--radius-md);padding:var(--sp-5);margin-bottom:var(--sp-4);box-shadow:var(--shadow-sm);border:1px solid var(--border)}
+.card-click{cursor:pointer;transition:all .2s}.card-click:hover{border-color:var(--primary-action);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;height:48px;border:none;border-radius:var(--radius-sm);font-size:var(--fs-md);font-weight:500;font-family:var(--font);cursor:pointer;transition:all .2s}
+.btn-primary{background:var(--primary-action);color:var(--text-white)}.btn-primary:hover{background:var(--primary-hover)}
+.btn-secondary{background:var(--surface);color:var(--primary-action);border:1.5px solid var(--primary-action)}.btn-secondary:hover{background:var(--primary-subtle)}
+.btn-text{background:none;color:var(--primary-action);height:auto;font-size:var(--fs-sm)}
+.btn-ghost{background:transparent;color:var(--text-secondary);border:1px solid var(--border);height:40px;font-size:var(--fs-sm)}
+.btn-row{display:flex;gap:var(--sp-3);padding:var(--sp-4) var(--sp-5)}.btn-row .btn{flex:1}
+.field{margin-bottom:var(--sp-4)}.field label{display:block;font-size:var(--fs-sm);font-weight:500;color:var(--text-secondary);margin-bottom:var(--sp-1)}
+.field input,.field select{width:100%;height:48px;padding:0 var(--sp-5);border:2px solid var(--border-input);border-radius:var(--radius-lg);font-size:var(--fs-lg);font-family:var(--font);background:var(--surface);color:var(--text-primary)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--primary-action);box-shadow:0 0 0 3px rgba(79,110,247,.12)}
+.field-row{display:flex;gap:var(--sp-3)}.field-row .field{flex:1}
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:var(--radius-round);font-size:var(--fs-xs);font-weight:600}
+.badge-success{background:var(--success-bg);color:#1a9c55}.badge-info{background:var(--primary-subtle);color:var(--primary-action)}.badge-muted{background:var(--neutral-100);color:var(--text-muted)}
+.progress{height:4px;background:var(--neutral-100);border-radius:2px;margin:0 var(--sp-5) var(--sp-4)}.progress .fill{height:100%;background:var(--primary-action);border-radius:2px;transition:width .3s}
+.app-bar{height:48px;background:var(--surface);display:flex;align-items:center;padding:0 var(--sp-4);gap:var(--sp-3);border-bottom:1px solid var(--neutral-100)}
+.app-bar .back{font-size:18px;cursor:pointer;color:var(--text-secondary)}.app-bar .title{font-size:var(--fs-lg);font-weight:600;flex:1}.app-bar .right{font-size:var(--fs-sm);color:var(--text-muted)}
+.bottom-nav{height:56px;background:var(--surface);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-around;flex-shrink:0}
+.bottom-nav .ni{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:var(--fs-xs);color:var(--text-muted);cursor:pointer}.bottom-nav .ni.active{color:var(--primary-action)}
+.kv{display:flex;justify-content:space-between;padding:var(--sp-3) 0;border-bottom:1px solid var(--neutral-100);font-size:var(--fs-sm)}.kv:last-child{border:none}.kv .k{color:var(--text-secondary)}.kv .v{font-weight:600}
+.section-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-2);font-size:var(--fs-md);font-weight:600}.section-hd .edit{font-size:var(--fs-sm);color:var(--primary-action);cursor:pointer}
+.checkbox{display:flex;gap:var(--sp-3);align-items:flex-start;font-size:var(--fs-sm);color:var(--text-secondary);margin:var(--sp-4) 0}.checkbox .box{width:20px;height:20px;border:2px solid var(--border-input);border-radius:var(--radius-sm);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--primary-action);cursor:pointer}
+.offer-box{background:linear-gradient(135deg,var(--primary-subtle),#dbeafe);border-radius:var(--radius-xl);padding:var(--sp-6);text-align:center;margin:var(--sp-4) 0;border:1px solid rgba(79,110,247,.15)}
+.info-banner{background:var(--primary-subtle);border-radius:var(--radius-md);padding:var(--sp-3) var(--sp-4);font-size:var(--fs-sm);color:var(--primary-action);margin-bottom:var(--sp-4)}
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-3)}.metric{text-align:center;padding:var(--sp-3);background:var(--surface-elevated);border-radius:var(--radius-md)}.metric .val{font-size:var(--fs-xl);font-weight:700;color:var(--primary-action)}.metric .lbl{font-size:var(--fs-xs);color:var(--text-muted);margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:var(--fs-sm)}th{text-align:left;padding:var(--sp-2) var(--sp-3);color:var(--text-muted);font-weight:500;border-bottom:1px solid var(--border)}td{padding:var(--sp-2) var(--sp-3);border-bottom:1px solid var(--neutral-100)}
+.divider{height:1px;background:var(--border);margin:var(--sp-4) 0}
+.log{background:var(--neutral-1050);color:var(--neutral-200);padding:var(--sp-4);border-radius:var(--radius-lg);font-family:monospace;font-size:var(--fs-xs);max-height:160px;overflow-y:auto;white-space:pre-wrap;line-height:1.6;margin-top:var(--sp-4)}.log .success{color:var(--success)}.log .error{color:var(--danger)}.log .info{color:var(--primary-action)}
+.info-card{border-radius:var(--radius-md);padding:var(--sp-5);margin-top:var(--sp-3);border:1px solid}.info-card.settlement{background:#fffbf0;border-color:#f0d78c}.info-card.letter{background:#f0faf4;border-color:#a3e4bc}.info-card.topup-yes{background:#f0faf4;border-color:#a3e4bc}.info-card.topup-no{background:#fef2f2;border-color:#f5a3a3}
+.info-card h3{font-size:var(--fs-md);font-weight:600;margin-bottom:var(--sp-3)}.info-card p{font-size:var(--fs-sm);color:var(--text-secondary);margin-bottom:var(--sp-1)}
+.hidden{display:none!important}#app{display:none}
+.stepper{display:flex;align-items:center;padding:var(--sp-3) var(--sp-5)}.step-c{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;border:2px solid var(--border);color:var(--text-muted);background:var(--surface);flex-shrink:0}.step-c.active{border-color:var(--primary-action);background:var(--primary-action);color:var(--text-white)}.step-c.done{border-color:var(--success);background:var(--success);color:var(--text-white)}.step-line{flex:1;height:2px;background:var(--border);margin:0 4px}.step-line.done{background:var(--success)}
+</style>
+</head>
+<body>
+<div class="header"><span style="font-size:24px">🏦</span><h1>Tasheel Finance</h1><span class="badge-tag">Baseline</span></div>
+<div class="container" id="app">
+
+<!-- A. LOGIN -->
+<div id="screen-login">
+  <div class="content" style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:500px">
+    <div style="font-size:48px;margin-bottom:var(--sp-2)">🏦</div>
+    <div style="font-size:var(--fs-2xl);font-weight:700;margin-bottom:var(--sp-8)">Tasheel Finance</div>
+    <div style="width:100%">
+      <div class="field"><label>Phone or Email</label><input id="f-login-phone" placeholder="Enter phone or email" value="ahmed@test.com"></div>
+      <div class="field"><label>Password</label><input id="f-login-pass" type="password" placeholder="Enter password" value="password123"></div>
+      <button class="btn btn-primary" onclick="doLogin()">LOG IN</button>
+      <div style="text-align:center;margin:var(--sp-5) 0;color:var(--text-muted);font-size:var(--fs-sm)">── or sign in with ──</div>
+      <button class="btn-text" style="width:100%;text-align:center" onclick="doLogin()">👆 Biometric Login</button>
+      <div style="text-align:center;margin-top:var(--sp-4)"><a style="font-size:var(--fs-sm);color:var(--primary-action);cursor:pointer">Forgot password?</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- B. PRODUCT LIST -->
+<div id="screen-products" class="hidden">
+  <div class="app-bar"><span class="back" onclick="goScreen('login')">←</span><span class="title">Our Products</span><span class="right">🔔</span></div>
+  <div class="content" id="products-grid"></div>
+  <div class="bottom-nav"><div class="ni active"><span>🏠</span>Home</div><div class="ni"><span>📋</span>Products</div><div class="ni"><span>👤</span>Profile</div></div>
+</div>
+
+<!-- C. APPLICATION FORM - 4 STEP WIZARD -->
+<div id="screen-apply" class="hidden">
+  <div class="app-bar"><span class="back" onclick="goScreen('products')">←</span><span class="title" id="apply-title">Apply – Personal Info</span><span class="right" id="apply-step">1/4</span></div>
+  <div class="progress"><div class="fill" id="apply-progress" style="width:25%"></div></div>
+  <div class="stepper" id="apply-stepper"></div>
+  <!-- Step 1: Personal Info -->
+  <div id="apply-1" class="content" style="padding-top:0">
+    <div class="field"><label>Full Name</label><input id="f-name" value="Ahmed Al-Rashid"></div>
+    <div class="field"><label>Date of Birth</label><input id="f-dob" type="date" value="1985-03-15"></div>
+    <div class="field"><label>National ID (Iqama)</label><input id="f-nid" value="1234567890"></div>
+    <div class="field"><label>Address Line 1</label><input id="f-address" value="King Fahd Road" placeholder="Street address"></div>
+    <div class="field-row">
+      <div class="field"><label>City</label><input id="f-city" value="Riyadh"></div>
+      <div class="field"><label>Region</label><select id="f-region"><option>Central</option><option>Western</option><option>Eastern</option></select></div>
+    </div>
+  </div>
+  <!-- Step 2: Employment -->
+  <div id="apply-2" class="content hidden" style="padding-top:0">
+    <div class="field"><label>Employment Type</label><select id="f-emptype"><option>Government</option><option>Private</option><option>Military</option><option>Self-employed</option></select></div>
+    <div class="field"><label>Employer Name</label><input id="f-employer" value="Saudi Aramco"></div>
+    <div class="field"><label>Employment Start Date</label><input id="f-empstart" type="date" value="2015-06-01"></div>
+  </div>
+  <!-- Step 3: Income -->
+  <div id="apply-3" class="content hidden" style="padding-top:0">
+    <div class="field"><label>Gross Monthly Income (SAR)</label><input id="f-gross" type="number" value="15000"></div>
+    <div class="field"><label>Net Monthly Income (SAR)</label><input id="f-salary" type="number" value="13500"></div>
+    <div class="field"><label>Other Income (SAR)</label><input id="f-other" type="number" value="0"></div>
+    <div class="info-banner">ℹ️ For Cash Finance, income fields are editable.</div>
+    <div class="field"><label>Requested Amount (SAR)</label><input id="f-amount" type="number" value="50000"></div>
+    <div class="field"><label>Tenure (months)</label><input id="f-tenure" type="number" value="24"></div>
+  </div>
+  <!-- Step 4: Review -->
+  <div id="apply-4" class="content hidden" style="padding-top:0">
+    <div class="section-hd">Personal Info <span class="edit" onclick="goApplyStep(1)">✏️ Edit</span></div>
+    <div class="kv"><span class="k">Name</span><span class="v" id="rv-name"></span></div>
+    <div class="kv"><span class="k">DOB</span><span class="v" id="rv-dob"></span></div>
+    <div class="kv"><span class="k">National ID</span><span class="v" id="rv-nid"></span></div>
+    <div class="divider"></div>
+    <div class="section-hd">Employment <span class="edit" onclick="goApplyStep(2)">✏️ Edit</span></div>
+    <div class="kv"><span class="k">Type</span><span class="v" id="rv-emptype"></span></div>
+    <div class="kv"><span class="k">Employer</span><span class="v" id="rv-employer"></span></div>
+    <div class="divider"></div>
+    <div class="section-hd">Income <span class="edit" onclick="goApplyStep(3)">✏️ Edit</span></div>
+    <div class="kv"><span class="k">Gross</span><span class="v" id="rv-gross"></span></div>
+    <div class="kv"><span class="k">Net</span><span class="v" id="rv-net"></span></div>
+    <div class="kv"><span class="k">Amount</span><span class="v" id="rv-amount"></span></div>
+    <div class="kv"><span class="k">Tenure</span><span class="v" id="rv-tenure"></span></div>
+    <div class="checkbox" id="cb-terms"><div class="box" onclick="toggleCheck(this)">☐</div><span>I agree to the Terms & Conditions and authorize credit checks.</span></div>
+  </div>
+  <div class="btn-row" id="apply-buttons"></div>
+</div>
+
+<!-- D. CARD COLLECTION -->
+<div id="screen-card" class="hidden">
+  <div class="app-bar"><span class="back">←</span><span class="title">Card & Debit Setup</span></div>
+  <div class="content">
+    <p style="font-size:var(--fs-sm);color:var(--text-secondary);margin-bottom:var(--sp-5)">Register your debit card for automatic repayments</p>
+    <div class="field"><label>Card Number</label><input id="f-card" value="4111111111111234" placeholder="XXXX XXXX XXXX XXXX"></div>
+    <div class="field-row">
+      <div class="field"><label>Expiry MM/YY</label><input id="f-expiry" value="12/27"></div>
+      <div class="field"><label>CVV</label><input id="f-cvv" value="123" type="password"></div>
+    </div>
+    <div class="divider"></div>
+    <div class="field"><label>Salary Credit Date (day of month)</label><input id="f-adday" type="number" value="25" min="1" max="28"></div>
+    <div class="checkbox"><div class="box" onclick="toggleCheck(this)">☐</div><span>I authorize Tasheel Finance to auto-debit monthly payments from this card on the selected date.</span></div>
+    <p style="font-size:var(--fs-xs);color:var(--text-muted)">🔒 Card data processed via secure hosted fields — never stored on our servers</p>
+  </div>
+  <div class="btn-row"><button class="btn btn-primary" onclick="registerCard()">Confirm & Continue</button></div>
+</div>
+
+<!-- E. OFFER -->
+<div id="screen-offer" class="hidden">
+  <div class="app-bar"><span class="back">←</span><span class="title">Your Offer</span></div>
+  <div class="content">
+    <div style="text-align:center;font-size:var(--fs-xl);margin-bottom:var(--sp-2)">🎉</div>
+    <div style="text-align:center;font-size:var(--fs-lg);font-weight:600;margin-bottom:var(--sp-4)">Congratulations!</div>
+    <div class="offer-box"><div id="offer-amount" style="font-size:var(--fs-3xl);font-weight:700;color:var(--primary-action)"></div><div id="offer-subtitle" style="font-size:var(--fs-sm);color:var(--text-secondary);margin-top:var(--sp-1)"></div></div>
+    <div class="card" style="padding:0" id="offer-details"></div>
+    <div class="info-banner" id="offer-validity">ℹ️ This offer is valid for 48 hours</div>
+    <button class="btn btn-primary" style="margin-bottom:var(--sp-3)" onclick="acceptOffer()">Accept Offer</button>
+    <button class="btn btn-secondary" onclick="log('Offer declined','error')">Decline</button>
+  </div>
+</div>
+
+<!-- F. DASHBOARD -->
+<div id="screen-dashboard" class="hidden">
+  <div class="app-bar"><span class="right">☰</span><span class="title">Dashboard</span><span class="right">🔔</span></div>
+  <div class="content">
+    <div style="font-size:var(--fs-lg);font-weight:600;margin-bottom:var(--sp-5)" id="welcome-msg">Welcome back</div>
+    <div style="font-size:var(--fs-sm);font-weight:600;color:var(--text-secondary);margin-bottom:var(--sp-3)">Active Loans</div>
+    <div id="dashboard-loans"></div>
+  </div>
+  <div class="bottom-nav"><div class="ni active"><span>🏠</span>Home</div><div class="ni" onclick="goScreen('products')"><span>📋</span>Products</div><div class="ni"><span>👤</span>Profile</div></div>
+</div>
+
+<!-- G. LOAN DETAIL -->
+<div id="screen-loan" class="hidden">
+  <div class="app-bar"><span class="back" onclick="goScreen('dashboard')">←</span><span class="title" id="loan-title">Cash Finance</span><span class="badge badge-success" id="loan-badge">Active</span></div>
+  <div class="content">
+    <div style="text-align:center;padding:var(--sp-6) 0"><div id="loan-balance" style="font-size:var(--fs-hero);font-weight:700;color:var(--primary-action)"></div><div style="font-size:var(--fs-sm);color:var(--text-muted);margin-top:var(--sp-1)">Outstanding Balance</div></div>
+    <div class="card" style="padding:0" id="loan-details"></div>
+    <div style="font-size:var(--fs-sm);font-weight:600;color:var(--text-secondary);margin:var(--sp-4) 0 var(--sp-2)">Payment Schedule</div>
+    <table id="loan-schedule"><tr><th>#</th><th>Date</th><th>Amount</th><th></th></tr></table>
+    <div style="margin-top:var(--sp-5);display:flex;flex-direction:column;gap:var(--sp-3)">
+      <button class="btn btn-primary" onclick="getSettlement()">Request Settlement Figure</button>
+      <button class="btn btn-secondary" onclick="getLiabilityLetter()">Download Liability Letter</button>
+      <div style="display:flex;gap:var(--sp-2)">
+        <button class="btn btn-ghost" style="flex:1" onclick="checkTopUp()">Top-Up Eligibility</button>
+        <button class="btn btn-ghost" style="flex:1" onclick="makePayment()">Pay SAR 2,000</button>
+      </div>
+    </div>
+    <div id="extra-info"></div>
+  </div>
+</div>
+
+<!-- LOG -->
+<div style="padding:var(--sp-4)"><div class="log" id="log"></div></div>
+</div><!-- end app container -->
+
+<script>
+const API='http://localhost:5000';
+let state={productId:null,appId:null,loanId:null,applyStep:1};
+const SCREENS=['login','products','apply','card','offer','dashboard','loan'];
+
+function goScreen(name){SCREENS.forEach(s=>document.getElementById('screen-'+s).classList.add('hidden'));document.getElementById('screen-'+name).classList.remove('hidden')}
+
+async function api(method,path,body){const opts={method,headers:{'Content-Type':'application/json'}};if(body)opts.body=JSON.stringify(body);const start=Date.now();const res=await fetch(`${API}${path}`,opts);const data=await res.json();log(`${method} ${path} → ${res.status} (${Date.now()-start}ms)`,res.ok?'success':'error');return data}
+
+function log(msg,type='info'){const el=document.getElementById('log');el.innerHTML+=`<span class="${type}">[${new Date().toLocaleTimeString()}] ${msg}</span>\n`;el.scrollTop=el.scrollHeight}
+
+function toggleCheck(el){el.textContent=el.textContent==='☐'?'☑':'☐'}
+
+// LOGIN
+async function doLogin(){
+  const{data}=await api('POST','/api/v1/auth/token',{username:document.getElementById('f-login-phone').value,password:document.getElementById('f-login-pass').value});
+  log(`Login successful — token: ${data.token.slice(0,12)}...`,'success');
+  goScreen('products');loadProducts()}
+
+// PRODUCTS
+async function loadProducts(){
+  const{data}=await api('GET','/api/v1/products');
+  document.getElementById('products-grid').innerHTML=data.map(p=>`<div class="card card-click" onclick="selectProduct('${p.id}','${p.name}')"><div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2)"><span>${p.type==='Cash'?'🏦':'💳'}</span><span style="font-size:var(--fs-lg);font-weight:600">${p.name}</span></div><div style="font-size:var(--fs-sm);color:var(--text-secondary);line-height:1.5">${p.description}</div><div style="margin-top:var(--sp-3);font-size:var(--fs-sm);font-weight:500">SAR ${p.minAmount.toLocaleString()} – ${p.maxAmount.toLocaleString()}</div><div style="font-size:var(--fs-sm);color:var(--text-secondary)">${p.minTenure}–${p.maxTenure} months · ${p.baseRate}% p.a.</div><div style="margin-top:var(--sp-3)"><span class="badge badge-info">${p.type}</span></div><button class="btn btn-primary" style="margin-top:var(--sp-3);height:40px;font-size:var(--fs-sm)" onclick="event.stopPropagation();selectProduct('${p.id}','${p.name}')">Apply Now</button></div>`).join('')}
+
+function selectProduct(id){state.productId=id;state.applyStep=1;goScreen('apply');renderApplyStep()}
+
+// APPLICATION FORM - 4 STEPS
+const APPLY_STEPS=['Personal Info','Employment','Income','Review & Submit'];
+function renderApplyStep(){
+  const s=state.applyStep;
+  document.getElementById('apply-title').textContent='Apply – '+APPLY_STEPS[s-1];
+  document.getElementById('apply-step').textContent=s+'/4';
+  document.getElementById('apply-progress').style.width=(s*25)+'%';
+  // stepper
+  document.getElementById('apply-stepper').innerHTML=APPLY_STEPS.map((label,i)=>{const cls=i<s-1?'done':i===s-1?'active':'';return`<div class="step-c ${cls}">${i<s-1?'✓':i+1}</div>${i<3?'<div class="step-line '+(i<s-1?'done':'')+'"></div>':''}`}).join('');
+  for(let i=1;i<=4;i++)document.getElementById('apply-'+i).classList.toggle('hidden',i!==s);
+  // review populate
+  if(s===4){document.getElementById('rv-name').textContent=document.getElementById('f-name').value;document.getElementById('rv-dob').textContent=document.getElementById('f-dob').value;document.getElementById('rv-nid').textContent='••••••'+document.getElementById('f-nid').value.slice(-4);document.getElementById('rv-emptype').textContent=document.getElementById('f-emptype').value;document.getElementById('rv-employer').textContent=document.getElementById('f-employer').value;document.getElementById('rv-gross').textContent='SAR '+Number(document.getElementById('f-gross').value).toLocaleString();document.getElementById('rv-net').textContent='SAR '+Number(document.getElementById('f-salary').value).toLocaleString();document.getElementById('rv-amount').textContent='SAR '+Number(document.getElementById('f-amount').value).toLocaleString();document.getElementById('rv-tenure').textContent=document.getElementById('f-tenure').value+' months'}
+  // buttons
+  const btns=document.getElementById('apply-buttons');
+  if(s===1)btns.innerHTML='<button class="btn btn-primary" onclick="goApplyStep(2)">Next →</button>';
+  else if(s<4)btns.innerHTML='<button class="btn btn-secondary" onclick="goApplyStep('+(s-1)+')">← Back</button><button class="btn btn-primary" onclick="goApplyStep('+(s+1)+')">Next →</button>';
+  else btns.innerHTML='<button class="btn btn-secondary" onclick="goApplyStep(3)">← Back</button><button class="btn btn-primary" onclick="submitApplication()">Submit Application</button>'}
+function goApplyStep(n){state.applyStep=n;renderApplyStep()}
+
+async function submitApplication(){
+  const body={productId:state.productId,requestedAmount:+document.getElementById('f-amount').value,requestedTenure:+document.getElementById('f-tenure').value,fullName:document.getElementById('f-name').value,nationalId:document.getElementById('f-nid').value,employer:document.getElementById('f-employer').value,monthlySalary:+document.getElementById('f-salary').value,dateOfBirth:document.getElementById('f-dob').value,address:document.getElementById('f-address').value,city:document.getElementById('f-city').value,region:document.getElementById('f-region').value,employmentType:document.getElementById('f-emptype').value,employmentStartDate:document.getElementById('f-empstart').value,grossIncome:+document.getElementById('f-gross').value,otherIncome:+document.getElementById('f-other').value};
+  const{data}=await api('POST','/api/v1/applications',body);state.appId=data.id;
+  await api('POST',`/api/v1/applications/${data.id}/submit`);
+  // assess
+  const assess=await api('POST',`/api/v1/applications/${data.id}/assess`);
+  if(assess.data.status==='Approved'){log(`Approved: SAR ${assess.data.approvedAmount.toLocaleString()}`,'success');await generateOffer()}
+  else{log(`Referred: ${assess.data.reason}`,'error')}}
+
+async function generateOffer(){
+  const{data}=await api('POST',`/api/v1/applications/${state.appId}/offer/generate`);
+  document.getElementById('offer-amount').textContent='SAR '+data.amount.toLocaleString();
+  document.getElementById('offer-subtitle').textContent=data.tenure+' months at '+data.profitRate+'% p.a.';
+  document.getElementById('offer-details').innerHTML=`<div class="kv" style="padding:var(--sp-3) var(--sp-4)"><span class="k">Tenure</span><span class="v">${data.tenure} months</span></div><div class="kv" style="padding:var(--sp-3) var(--sp-4)"><span class="k">Annual Rate</span><span class="v">${data.profitRate}%</span></div><div class="kv" style="padding:var(--sp-3) var(--sp-4)"><span class="k">Monthly Payment</span><span class="v">SAR ${data.monthlyPayment.toLocaleString()}</span></div><div class="kv" style="padding:var(--sp-3) var(--sp-4)"><span class="k">Total Payable</span><span class="v">SAR ${data.totalAmount.toLocaleString()}</span></div><div class="kv" style="padding:var(--sp-3) var(--sp-4)"><span class="k">Admin Fee</span><span class="v">SAR ${data.adminFee.toLocaleString()}</span></div>`;
+  goScreen('offer')}
+
+async function acceptOffer(){const{data}=await api('POST',`/api/v1/applications/${state.appId}/offer/accept`);state.loanId=data.loan.id;goScreen('card')}
+
+async function registerCard(){
+  await api('POST',`/api/v1/applications/${state.appId}/card`,{cardNumber:document.getElementById('f-card').value,expiryMonth:12,expiryYear:27,autoDebitDay:+document.getElementById('f-adday').value});
+  loadDashboard()}
+
+// DASHBOARD
+async function loadDashboard(){
+  const{data}=await api('GET','/api/v1/loans');
+  document.getElementById('welcome-msg').textContent='Welcome back, '+document.getElementById('f-name').value.split(' ')[0];
+  document.getElementById('dashboard-loans').innerHTML=data.map(l=>`<div class="card card-click" onclick="viewLoan('${l.id}')"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--sp-2)"><span style="font-size:var(--fs-md);font-weight:600">Cash Finance</span><span class="badge badge-success">${l.status}</span></div><div style="font-size:var(--fs-2xl);font-weight:700;color:var(--primary-action)">SAR ${l.outstandingPrincipal.toLocaleString()}</div><div style="font-size:var(--fs-sm);color:var(--text-secondary);margin-top:var(--sp-1)">Next: SAR ${l.monthlyPayment.toLocaleString()} · Due: ${new Date(l.nextPaymentDate).toLocaleDateString()}</div><div style="text-align:right;color:var(--text-muted);margin-top:var(--sp-2)">→</div></div>`).join('');
+  if(!data.length)document.getElementById('dashboard-loans').innerHTML='<p style="color:var(--text-muted)">No active loans</p>';
+  goScreen('dashboard')}
+
+// LOAN DETAIL
+async function viewLoan(id){
+  state.loanId=id;const{data:loan}=await api('GET',`/api/v1/loans/${id}`);
+  document.getElementById('loan-balance').textContent='SAR '+loan.outstandingPrincipal.toLocaleString();
+  document.getElementById('loan-details').innerHTML=`<div class="kv" style="padding:var(--sp-3) var(--sp-4)"><span class="k">Original Amount</span><span class="v">SAR ${loan.disbursedAmount.toLocaleString()}</span></div><div class="kv" style="padding:var(--sp-3) var(--sp-4)"><span class="k">Tenure</span><span class="v">${loan.tenure} months</span></div><div class="kv" style="padding:var(--sp-3) var(--sp-4)"><span class="k">Monthly Payment</span><span class="v">SAR ${loan.monthlyPayment.toLocaleString()}</span></div>`;
+  // payment schedule
+  const tbl=document.getElementById('loan-schedule');tbl.innerHTML='<tr><th>#</th><th>Date</th><th>Amount</th><th></th></tr>';
+  for(let i=1;i<=Math.min(loan.tenure,6);i++){const d=new Date(loan.disbursedAt);d.setMonth(d.getMonth()+i);const paid=i<=3;tbl.innerHTML+=`<tr><td>${i}</td><td>${d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'2-digit'})}</td><td>${loan.monthlyPayment.toLocaleString()}</td><td>${paid?'✅':'⏳'}</td></tr>`}
+  document.getElementById('extra-info').innerHTML='';goScreen('loan')}
+
+async function getSettlement(){const{data}=await api('GET',`/api/v1/loans/${state.loanId}/settlement-figure`);document.getElementById('extra-info').innerHTML=`<div class="info-card settlement"><h3>Settlement Figure</h3><p>Principal: <strong>SAR ${data.outstandingPrincipal.toLocaleString()}</strong></p><p>Accrued Interest: SAR ${data.accruedInterest}</p><p>Early Closure Fee: SAR ${data.earlyClosureFee}</p><p style="font-weight:700;font-size:var(--fs-lg);margin-top:var(--sp-3);color:var(--text-primary)">Total: SAR ${data.settlementAmount.toLocaleString()}</p><p style="font-size:var(--fs-xs);color:var(--text-muted)">Valid until: ${new Date(data.validUntil).toLocaleDateString()}</p></div>`}
+
+async function getLiabilityLetter(){const{data}=await api('GET',`/api/v1/loans/${state.loanId}/liability-letter`);document.getElementById('extra-info').innerHTML=`<div class="info-card letter"><h3>Liability Letter</h3><p><strong>${data.customerName}</strong></p><p>Ref: ${data.loanReference}</p><p>Balance: SAR ${data.outstandingBalance.toLocaleString()}</p><p>Rate: ${data.interestRate}</p><p>Monthly: SAR ${data.monthlyPayment}</p><p>Early Settlement Fee: ${data.earlySettlementFee}</p></div>`}
+
+async function checkTopUp(){const{data}=await api('GET',`/api/v1/loans/${state.loanId}/topup-eligibility`);document.getElementById('extra-info').innerHTML=`<div class="info-card ${data.eligible?'topup-yes':'topup-no'}"><h3>Top-Up Eligibility</h3><p>${data.eligible?'✅ Eligible':'❌ Not Eligible'}</p><p>DBR: ${data.currentDBR}% (max: ${data.maxDBR}%)</p>${data.reason?`<p style="color:var(--danger)">${data.reason}</p>`:''}</div>`}
+
+async function makePayment(){await api('POST',`/api/v1/loans/${state.loanId}/payments`,{amount:2000,type:'Manual'});log('Payment SAR 2,000 processed','success');viewLoan(state.loanId)}
+
+// INIT
+document.getElementById('app').style.display='flex';
+</script>
+</body></html>
